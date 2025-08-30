@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرجع سريع: المرونة ومقاومة المواد</title>
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --light: #f8fafc;
+            --dark: #1e293b;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .english {
+            font-family: 'Poppins', sans-serif;
+            direction: ltr;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+/* يخلي أي معادلة طويلة تكسر سطر */
+.example-box p {
+  overflow-x: auto;
+}
+/* اخفاء الاسكرول الرأسي */
+.example-box p {
+  overflow-y: hidden;   /* يخفي العمودي */
+  overflow-x: auto;     /* يسيب الافقي بس */
+  scrollbar-width: thin; /* للفايرفوكس */
+  scrollbar-color: rgba(255,255,255,0.4) transparent; 
+}
+
+/* للكروم/إيدج/سفاري */
+.example-box p::-webkit-scrollbar {
+  height: 5px;           /* سمك الاسكرول الأفقي */
+}
+
+.example-box p::-webkit-scrollbar-track {
+  background: transparent;   /* خلفية شفافة */
+}
+
+.example-box p::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4); /* شبه زجاج شفاف */
+  border-radius: 9999px;                /* مدوّر */
+  backdrop-filter: blur(4px);           /* تأثير زجاج */
+}
+
+.example-box p::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6); /* أغمق شوية عند الهوفر */
+}
+
+
+
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        accent: '#ec4899',
+                        light: '#f8fafc',
+                        dark: '#1e293b',
+                    },
+                    fontFamily: {
+                        'cairo': ['Cairo', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md py-3 px-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                <div class="btn-group" role="group">
+                    <button type="button" class="px-3 py-1 rounded-l-lg bg-primary text-white text-sm" id="arabic-btn">العربية</button>
+                    <button type="button" class="px-3 py-1 rounded-r-lg bg-gray-200 text-gray-700 text-sm" id="english-btn">English</button>
+                </div>
+            </div>
+            
+            <div class="flex space-x-1 rtl:space-x-reverse">
+                <button class="nav-tab active px-4 py-2 rounded-lg text-sm font-medium flex items-center" data-tab="definitions">
+                    <i data-lucide="book-open" class="w-4 h-4 ml-1 rtl:mr-1 rtl:ml-0"></i>
+                    <span class="hidden md:inline">التعريفات</span>
+                </button>
+                <button class="nav-tab px-4 py-2 rounded-lg text-sm font-medium flex items-center" data-tab="equations">
+                    <i data-lucide="calculator" class="w-4 h-4 ml-1 rtl:mr-1 rtl:ml-0"></i>
+                    <span class="hidden md:inline">المعادلات</span>
+                </button>
+                <button class="nav-tab px-4 py-2 rounded-lg text-sm font-medium flex items-center" data-tab="examples">
+                    <i data-lucide="lightbulb" class="w-4 h-4 ml-1 rtl:mr-1 rtl:ml-0"></i>
+                    <span class="hidden md:inline">أمثلة</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-12 md:py-16 rounded-bl-3xl rounded-br-3xl shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 fade-in">
+                <span class="arabic">مرجع سريع: المرونة ومقاومة المواد</span>
+                <span class="english hidden">Quick Reference: Elasticity & Strength of Materials</span>
+            </h1>
+            <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto fade-in">
+                <span class="arabic">مع تعريفات، قوانين أساسية، ومسائل محلولة (نسخة ثنائية اللغة)</span>
+                <span class="english hidden">With definitions, key equations, and solved problems (bilingual version)</span>
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Search Box -->
+        <div class="max-w-2xl mx-auto mb-8 fade-in">
+            <div class="relative flex items-center bg-white rounded-full shadow-md p-1">
+                <div class="pl-3 pr-2">
+                    <i data-lucide="search" class="w-5 h-5 text-gray-500"></i>
+                </div>
+                <input type="text" id="search-input" class="w-full py-2 px-2 bg-transparent border-0 focus:ring-0 text-gray-700" placeholder="ابحث عن مصطلح أو مفهوم...">
+                <button id="clear-search" class="p-2 rounded-full hover:bg-gray-100 text-gray-500">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Definitions Tab -->
+            <div id="definitions-tab" class="tab-pane active fade-in">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 card">
+                    <div class="gradient-bg text-white py-4 px-6">
+                        <h2 class="text-xl font-bold">
+                            <span class="arabic">التعريفات الأساسية</span>
+                            <span class="english hidden">Key Definitions</span>
+                        </h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-right rtl:text-right">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="py-3 px-4 font-semibold text-gray-700 rounded-tr-lg">
+                                            <span class="arabic">المصطلح</span>
+                                            <span class="english hidden">Term</span>
+                                        </th>
+                                        <th class="py-3 px-4 font-semibold text-gray-700 rounded-tl-lg">
+                                            <span class="arabic">التعريف</span>
+                                            <span class="english hidden">Definition</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-medium text-gray-700">
+                                            <span class="arabic">المرونة (Elasticity)</span>
+                                            <span class="english hidden">Elasticity</span>
+                                        </td>
+                                        <td class="py-3 px-4 text-gray-600">
+                                            <span class="arabic">قدرة المادة على العودة إلى شكلها الأصلي بعد إزالة القوة المؤثرة عليها</span>
+                                            <span class="english hidden">The ability of a material to return to its original shape after the force is removed</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-medium text-gray-700">
+                                            <span class="arabic">الإجهاد (Stress)</span>
+                                            <span class="english hidden">Stress</span>
+                                        </td>
+                                        <td class="py-3 px-4 text-gray-600">
+                                            <span class="arabic">القوة المؤثرة لكل وحدة مساحة: \(\sigma = \frac{F}{A}\)</span>
+                                            <span class="english hidden">Internal force per unit area: \(\sigma = \frac{F}{A}\)</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-medium text-gray-700">
+                                            <span class="arabic">الانفعال (Strain)</span>
+                                            <span class="english hidden">Strain</span>
+                                        </td>
+                                        <td class="py-3 px-4 text-gray-600">
+                                            <span class="arabic">التغير النسبي في الطول أو الحجم: \(\varepsilon = \frac{\Delta L}{L}\)</span>
+                                            <span class="english hidden">Relative change in length or volume: \(\varepsilon = \frac{\Delta L}{L}\)</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-medium text-gray-700">
+                                            <span class="arabic">نسبة بواسون (Poisson's Ratio)</span>
+                                            <span class="english hidden">Poisson's Ratio</span>
+                                        </td>
+                                        <td class="py-3 px-4 text-gray-600">
+                                            <span class="arabic">النسبة بين الانفعال العرضي والانفعال المحوري مع إشارة سالبة: \(\nu = -\frac{\varepsilon_{\text{trans}}}{\varepsilon_{\text{axial}}}\)</span>
+                                            <span class="english hidden">Ratio of transverse to axial strain (negative sign): \(\nu = -\frac{\varepsilon_{\text{trans}}}{\varepsilon_{\text{axial}}}\)</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-3 px-4 font-medium text-gray-700">
+                                            <span class="arabic">طاقة الانفعال (Strain Energy)</span>
+                                            <span class="english hidden">Strain Energy</span>
+                                        </td>
+                                        <td class="py-3 px-4 text-gray-600">
+                                            <span class="arabic">الطاقة المخزنة داخل الجسم المشوه</span>
+                                            <span class="english hidden">Energy stored inside a deformed body</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-amber-50 border-r-4 border-amber-400 rounded-lg">
+                            <p>
+                                <span class="arabic">ملاحظة: الإشارة السالبة في نسبة بواسون مهمة لأن الانفعال العرضي يكون عكس اتجاه الانفعال الطولي في حالة الشد</span>
+                                <span class="english hidden">Note: The negative sign in Poisson's ratio is important because transverse strain is opposite to longitudinal strain in tension</span>
+                            </p>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-green-50 border-r-4 border-green-400 rounded-lg">
+                            <h3 class="font-semibold text-green-800 mb-2">
+                                <span class="arabic">نصائح للحفظ:</span>
+                                <span class="english hidden">Memorization Tips:</span>
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 ml-2 rtl:mr-2 rtl:ml-0"></i>
+                                    <span class="arabic">تذكر أن الإجهاد = القوة ÷ المساحة (مثل الضغط)</span>
+                                    <span class="english hidden">Remember that Stress = Force ÷ Area (like pressure)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 ml-2 rtl:mr-2 rtl:ml-0"></i>
+                                    <span class="arabic">الانفعال هو التغير النسبي في الأبعاد (لا وحدة له)</span>
+                                    <span class="english hidden">Strain is the relative change in dimensions (dimensionless)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 ml-2 rtl:mr-2 rtl:ml-0"></i>
+                                    <span class="arabic">قانون هوك: الإجهاد يتناسب طردياً مع الانفعال</span>
+                                    <span class="english hidden">Hooke's Law: Stress is proportional to strain</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card">
+                        <div class="flip-card h-48">
+                            <div class="flip-card-inner relative w-full h-full">
+                                <div class="flip-card-front absolute w-full h-full gradient-bg text-white flex items-center justify-center p-6 rounded-2xl">
+                                    <h3 class="text-xl font-bold text-center">
+                                        <span class="arabic">ما هو قانون هوك؟</span>
+                                        <span class="english hidden">What is Hooke's Law?</span>
+                                    </h3>
+                                </div>
+                                <div class="flip-card-back absolute w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex flex-col items-center justify-center p-6 rounded-2xl">
+                                    <p class="text-2xl font-bold mb-2">\(\sigma = E\varepsilon\)</p>
+                                    <p class="text-center">
+                                        <span class="arabic">الإجهاد = معامل يونغ × الانفعال</span>
+                                        <span class="english hidden">Stress = Young's modulus × Strain</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card">
+                        <div class="flip-card h-48">
+                            <div class="flip-card-inner relative w-full h-full">
+                                <div class="flip-card-front absolute w-full h-full gradient-bg text-white flex items-center justify-center p-6 rounded-2xl">
+                                    <h3 class="text-xl font-bold text-center">
+                                        <span class="arabic">ما هي نسبة بواسون؟</span>
+                                        <span class="english hidden">What is Poisson's Ratio?</span>
+                                    </h3>
+                                </div>
+                                <div class="flip-card-back absolute w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex flex-col items-center justify-center p-6 rounded-2xl">
+                                    <p class="text-2xl font-bold mb-2">\(\nu = -\frac{\varepsilon_{\text{trans}}}{\varepsilon_{\text{axial}}}\)</p>
+                                    <p class="text-center">
+                                        <span class="arabic">نسبة الانفعال العرضي إلى الانفعال المحوري</span>
+                                        <span class="english hidden">Ratio of transverse to axial strain</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equations Tab -->
+            <div id="equations-tab" class="tab-pane hidden">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card">
+                    <div class="gradient-bg text-white py-4 px-6">
+                        <h2 class="text-xl font-bold">
+                            <span class="arabic">القوانين الأساسية</span>
+                            <span class="english hidden">Key Equations</span>
+                        </h2>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="equation-box p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 cursor-pointer hover:shadow-md transition-all">
+                            <div class="text-center">
+                                <p class="text-lg font-medium mb-1">
+                                    <span class="arabic">قانون هوك في بعد واحد</span>
+                                    <span class="english hidden">Hooke's Law (1D)</span>
+                                </p>
+                                <p class="text-2xl font-bold">\(\sigma = E\varepsilon\)</p>
+                            </div>
+                        </div>
+
+                        <div class="equation-box p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 cursor-pointer hover:shadow-md transition-all">
+                            <div class="text-center">
+                                <p class="text-lg font-medium mb-1">
+                                    <span class="arabic">قانون هوك في بعدين</span>
+                                    <span class="english hidden">Hooke's Law (2D)</span>
+                                </p>
+                                <p class="text-2xl font-bold">\(\sigma_{ij} = C_{ijkl}\varepsilon_{kl}\)</p>
+                            </div>
+                        </div>
+
+                        <div class="equation-box p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 cursor-pointer hover:shadow-md transition-all">
+                            <div class="text-center">
+                                <p class="text-lg font-medium mb-1">
+                                    <span class="arabic">علاقة المعايير</span>
+                                    <span class="english hidden">Moduli Relation</span>
+                                </p>
+                                <p class="text-2xl font-bold">\(E = 2G(1 + \nu)\)</p>
+                            </div>
+                        </div>
+
+                        <div class="equation-box p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 cursor-pointer hover:shadow-md transition-all">
+                            <div class="text-center">
+                                <p class="text-lg font-medium mb-1">
+                                    <span class="arabic">قوة النابض</span>
+                                    <span class="english hidden">Spring Force</span>
+                                </p>
+                                <p class="text-2xl font-bold">\(F = -kx\)</p>
+                            </div>
+                        </div>
+
+                        <div class="equation-box p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 cursor-pointer hover:shadow-md transition-all">
+                            <div class="text-center">
+                                <p class="text-lg font-medium mb-1">
+                                    <span class="arabic">الانفعال الحجمي</span>
+                                    <span class="english hidden">Volumetric Strain</span>
+                                </p>
+                                <p class="text-2xl font-bold">\(\varepsilon_v = 3(1 - 2\nu) \frac{\sigma}{E}\)</p>
+                            </div>
+                        </div>
+
+                        <div class="equation-box p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 cursor-pointer hover:shadow-md transition-all">
+                            <div class="text-center">
+                                <p class="text-lg font-medium mb-1">
+                                    <span class="arabic">طاقة الانفعال</span>
+                                    <span class="english hidden">Strain Energy</span>
+                                </p>
+                                <p class="text-2xl font-bold">\(U = \frac{1}{2} \sigma \epsilon V = \frac{1}{2} \frac{F^2}{k}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Examples Tab -->
+            <div id="examples-tab" class="tab-pane hidden">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card">
+                    <div class="gradient-bg text-white py-4 px-6">
+                        <h2 class="text-xl font-bold">
+                            <span class="arabic">مسائل محلولة</span>
+                            <span class="english hidden">Solved Problems</span>
+                        </h2>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="example-box p-5 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border border-gray-200 hover:shadow-md transition-all">
+                            <h3 class="text-lg font-semibold mb-3 text-blue-600">
+                                <span class="arabic">مثال 1: إيجاد الاستطالة</span>
+                                <span class="english hidden">Example 1: Finding Elongation</span>
+                            </h3>
+                            <p class="mb-3 text-gray-700">
+                                <span class="arabic"><strong>المعطيات:</strong> \( L_0 = 2  \text{m},  A = 1  \text{mm}^2 = 10^{-6}  \text{m}^2,  F = 100  \text{N},
+                                  E = 2 \times 10^{11}  \text{Pa} \)</span>
+                                <span class="english hidden"><strong>Given:</strong> \( L_0 = 2  \text{m},  A = 1  \text{mm}^2 = 10^{-6}  \text{m}^2,
+                                  F = 100  \text{N},  E = 2 \times 10^{11}  \text{Pa} \)</span>
+                            </p>
+                            <p class="mb-3 text-gray-700">
+                                <span class="arabic"><strong>الحل:</strong> \( \sigma = \frac{F}{A} = \frac{100}{10^{-6}} = 1 \times 10^8  \text{Pa} \), \( \epsilon = \frac{\sigma}{E} = \frac{10^8}{2 \times 10^{11}} = 5 \times 10^{-4} \), \( \Delta L = \epsilon L_0 = 5 \times 10^{-4} \times 2 = 1 \times 10^{-3}  \text{m} = 1  \text{mm} \)</span>
+                                <span class="english hidden"><strong>Solution:</strong> \( \sigma = \frac{F}{A} = \frac{100}{10^{-6}} = 1 \times 10^8  \text{Pa} \), \( \epsilon = \frac{\sigma}{E} = \frac{10^8}{2 \times 10^{11}} = 5 \times 10^{-4} \), \( \Delta L = \epsilon L_0 = 5 \times 10^{-4} \times 2 = 1 \times 10^{-3}  \text{m} = 1  \text{mm} \)</span>
+                            </p>
+                            <p class="font-semibold text-green-600">
+                                <span class="arabic"><strong>الإجابة:</strong> \(\Delta L = 1  \text{mm} \)</span>
+                                <span class="english hidden"><strong>Answer:</strong> \(\Delta L = 1  \text{mm} \)</span>
+                            </p>
+                        </div>
+
+                        <div class="example-box p-5 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border border-gray-200 hover:shadow-md transition-all">
+                            <h3 class="text-lg font-semibold mb-3 text-blue-600">
+                                <span class="arabic">مثال 2: حساب معامل يونغ</span>
+                                <span class="english hidden">Example 2: Calculating Young's Modulus</span>
+                            </h3>
+                            <p class="mb-3 text-gray-700">
+                                <span class="arabic"><strong>المعطيات:</strong> \( \sigma = 2 \times 10^7  \text{Pa},  \epsilon = 0.001 \)</span>
+                                <span class="english hidden"><strong>Given:</strong> \( \sigma = 2 \times 10^7  \text{Pa},  \epsilon = 0.001 \)</span>
+                            </p>
+                            <p class="mb-3 text-gray-700">
+                                <span class="arabic"><strong>الحل:</strong> \( E = \frac{\sigma}{\epsilon} = \frac{2 \times 10^7}{0.001} = 2 \times 10^{10}  \text{Pa} \)</span>
+                                <span class="english hidden"><strong>Solution:</strong> \( E = \frac{\sigma}{\epsilon} = \frac{2 \times 10^7}{0.001} = 2 \times 10^{10}  \text{Pa} \)</span>
+                            </p>
+                            <p class="font-semibold text-green-600">
+                                <span class="arabic"><strong>الإجابة:</strong> \( E = 20  \text{GPa} \)</span>
+                                <span class="english hidden"><strong>Answer:</strong> \( E = 20  \text{GPa} \)</span>
+                            </p>
+                        </div>
+
+                        <div class="example-box p-5 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border border-gray-200 hover:shadow-md transition-all">
+                            <h3 class="text-lg font-semibold mb-3 text-blue-600">
+                                <span class="arabic">مثال 3: حساب نسبة بواسون</span>
+                                <span class="english hidden">Example 3: Calculating Poisson's Ratio</span>
+                            </h3>
+                            <p class="mb-3 text-gray-700">
+                                <span class="arabic"><strong>المعطيات:</strong> \( \epsilon_{\text{axial}} = 0.002,  \epsilon_{\text{trans}} = -0.0006 \)</span>
+                                <span class="english hidden"><strong>Given:</strong> \( \epsilon_{\text{axial}} = 0.002,  \epsilon_{\text{trans}} = -0.0006 \)</span>
+                            </p>
+                            <p class="mb-3 text-gray-700">
+                                <span class="arabic"><strong>الحل:</strong> \( \nu = -\frac{\epsilon_{\text{trans}}}{\epsilon_{\text{axial}}} = -\frac{-0.0006}{0.002} = 0.3 \)</span>
+                                <span class="english hidden"><strong>Solution:</strong> \( \nu = -\frac{\epsilon_{\text{trans}}}{\epsilon_{\text{axial}}} = -\frac{-0.0006}{0.002} = 0.3 \)</span>
+                            </p>
+                            <p class="font-semibold text-green-600">
+                                <span class="arabic"><strong>الإجابة:</strong> \( \nu = 0.3 \)</span>
+                                <span class="english hidden"><strong>Answer:</strong> \( \nu = 0.3 \)</span>
+                            </p>
+                        </div>
+
+                        <div class="example-box p-5 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border border-gray-200 hover:shadow-md transition-all">
+                            <h3 class="text-lg font-semibold mb-3 text-blue-600">
+                                <span class="arabic">مثال 4: حساب طاقة الانفعال</span>
+                                <span class="english hidden">Example 4: Calculating Strain Energy</span>
+                            </h3>
+                            <p class="mb-3 text-gray-700">
+                                <span class="arabic"><strong>المعطيات:</strong> \( \sigma = 1.5 \times 10^7  \text{Pa},  \epsilon = 0.0005,  V = 0.01  \text{m}^3 \)</span>
+                                <span class="english hidden"><strong>Given:</strong> \( \sigma = 1.5 \times 10^7  \text{Pa},  \epsilon = 0.0005,  V = 0.01  \text{m}^3 \)</span>
+                            </p>
+                            <p class="mb-3 text-gray-700">
+                                <span class="arabic"><strong>الحل:</strong> \( U = \frac{1}{2} \sigma \epsilon V = \frac{1}{2} \times 1.5 \times 10^7 \times 0.0005 \times 0.01 = 0.0375  \text{J} \)</span>
+                                <span class="english hidden"><strong>Solution:</strong> \( U = \frac{1}{2} \sigma \epsilon V = \frac{1}{2} \times 1.5 \times 10^7 \times 0.0005 \times 0.01 = 0.0375  \text{J} \)</span>
+                            </p>
+                            <p class="font-semibold text-green-600">
+                                <span class="arabic"><strong>الإجابة:</strong> \( U = 0.0375  \text{J} \)</span>
+                                <span class="english hidden"><strong>Answer:</strong> \( U = 0.0375  \text{J} \)</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8 mt-12 rounded-tl-3xl rounded-tr-3xl">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">
+                <span class="arabic">© مرجع سريع: المرونة ومقاومة المواد.</span>
+                <span class="english hidden"> Quick Reference: Elasticity & Strength of Materials. </span>
+            </p>
+            <p class="opacity-80">
+                <span class="arabic"> This website is designed by Hazem</span>
+                <span class="english hidden">This website is designed by Hazem</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Language Toggle
+        document.getElementById('arabic-btn').addEventListener('click', function() {
+            document.querySelectorAll('.arabic').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.english').forEach(el => el.classList.add('hidden'));
+            document.getElementById('arabic-btn').classList.add('bg-primary', 'text-white');
+            document.getElementById('arabic-btn').classList.remove('bg-gray-200', 'text-gray-700');
+            document.getElementById('english-btn').classList.remove('bg-primary', 'text-white');
+            document.getElementById('english-btn').classList.add('bg-gray-200', 'text-gray-700');
+            document.documentElement.setAttribute('dir', 'rtl');
+            document.documentElement.setAttribute('lang', 'ar');
+        });
+
+        document.getElementById('english-btn').addEventListener('click', function() {
+            document.querySelectorAll('.english').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.arabic').forEach(el => el.classList.add('hidden'));
+            document.getElementById('english-btn').classList.add('bg-primary', 'text-white');
+            document.getElementById('english-btn').classList.remove('bg-gray-200', 'text-gray-700');
+            document.getElementById('arabic-btn').classList.remove('bg-primary', 'text-white');
+            document.getElementById('arabic-btn').classList.add('bg-gray-200', 'text-gray-700');
+            document.documentElement.setAttribute('dir', 'ltr');
+            document.documentElement.setAttribute('lang', 'en');
+        });
+
+        // Tab Navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const tabName = this.getAttribute('data-tab');
+                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
+                document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+                
+                // Add fade-in animation
+                document.getElementById(`${tabName}-tab`).classList.add('fade-in');
+                setTimeout(() => {
+                    document.getElementById(`${tabName}-tab`).classList.remove('fade-in');
+                }, 500);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('search-input').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            if (searchTerm.length < 2) {
+                document.querySelectorAll('.card, .equation-box, .example-box').forEach(el => {
+                    el.style.display = 'block';
+                });
+                return;
+            }
+            
+            document.querySelectorAll('.card, .equation-box, .example-box').forEach(el => {
+                const text = el.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('clear-search').addEventListener('click', function() {
+            document.getElementById('search-input').value = '';
+            document.querySelectorAll('.card, .equation-box, .example-box').forEach(el => {
+                el.style.display = 'block';
+            });
+        });
+
+        // Flip cards for definitions
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.querySelector('.flip-card-inner').classList.toggle('flipped');
+            });
+        });
+    </script>
+</body>
+</html>
